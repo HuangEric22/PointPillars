@@ -22,7 +22,19 @@ setup(
                 'pointpillars/ops/iou3d/iou3d_kernel.cu',
             ],
             define_macros=[('WITH_CUDA', None)]
-        )
+        ),
+        CUDAExtension(
+            name='pointpillars.ops.bev_scatter_op',
+            sources=[
+                'pointpillars/ops/bev_scatter/bev_scatter.cpp',
+                'pointpillars/ops/bev_scatter/bev_scatter_cuda.cu',
+            ],
+            define_macros=[('WITH_CUDA', None)],
+            extra_compile_args={
+                'cxx': ['-O3'],
+                'nvcc': ['-O3'],
+            },
+        )      
     ],
     cmdclass={'build_ext': BuildExtension},
     zip_safe=False

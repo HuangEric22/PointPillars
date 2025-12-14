@@ -37,14 +37,14 @@ def collate_fn(list_data):
     return rt_data_dict
 
 
-def get_dataloader(dataset, batch_size, num_workers, shuffle=True, drop_last=False):
+def get_dataloader(dataset, batch_size, num_workers, shuffle=True, drop_last=False, pin_memory=False):
     collate = collate_fn
-    dataloader = DataLoader(
-        dataset=dataset,
+    return DataLoader(
+        dataset,
         batch_size=batch_size,
         shuffle=shuffle,
         num_workers=num_workers,
-        drop_last=drop_last, 
+        pin_memory=pin_memory,
         collate_fn=collate,
+        persistent_workers=num_workers > 0,
     )
-    return dataloader

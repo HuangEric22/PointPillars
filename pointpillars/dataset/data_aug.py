@@ -62,7 +62,7 @@ def dbsample(CLASSES, data_root, data_dict, db_sampler, sample_groups):
         avoid_coll_boxes = np.concatenate([avoid_coll_boxes, tmp_bboxes], axis=0)
         
     # merge sampled database
-    # remove raw points in sampled_bboxes firstly
+    # remove raw points in sampled_bboxes firstly``
     pts = remove_pts_in_bboxes(pts, np.stack(sampled_bboxes, axis=0))
     # pts = np.concatenate([pts, np.concatenate(sampled_pts, axis=0)], axis=0)
     pts = np.concatenate([np.concatenate(sampled_pts, axis=0), pts], axis=0)
